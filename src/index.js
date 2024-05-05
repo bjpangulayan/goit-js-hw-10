@@ -7,14 +7,13 @@ const errorEl = document.querySelector(".error");
 
 errorEl.classList.add("is-hidden");
 
-//CREATE THE OPTIONS
 function chooseBreed() {
 	fetchBreeds().then((data) => {
 			loaderEl.classList.replace("loader", "is-hidden");
 
 			let optionsMarkup = data.map(({ name, id }) => {
 				return `<option value=${id}>${name}</option>`;
-				//<option value={catId} >Cat Name</option>
+				
 			});
 			breedSelectEl.insertAdjacentHTML("beforeend", optionsMarkup);
 			breedSelectEl.classList.remove("is-hidden");
@@ -25,12 +24,7 @@ function chooseBreed() {
 chooseBreed();
 
 breedSelectEl.addEventListener("change", (e) => {
-	//show loader while loading.
-
 	loaderEl.classList.replace("is-hidden", "loader");
-
-	//hide select element and cat info while loading.
-
 	catInfoEl.classList.add("is-hidden");
 
 	let breedId = e.target.value;
@@ -54,9 +48,7 @@ breedSelectEl.addEventListener("change", (e) => {
 });
 
 function onError() {
-	//Show error message
+	
 	errorEl.classList.remove("is-hidden");
-
-	//hide select element
 	breedSelectEl.classList.add("is-hidden");
 }
